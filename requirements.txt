@@ -5,3 +5,4 @@ matplotlib
 joblib
 numpy
 shap
+protobuf==3.20.3
