@@ -35,13 +35,14 @@ st.markdown("""
 @st.cache_resource
 def load_model():
     HF_REPO = "maitry30/mindsense-bert"  # HuggingFace repo with model and tokenizer
+    hf_token = st.secrets.get("HF_TOKEN", None)
     tokenizer = AutoTokenizer.from_pretrained(HF_REPO)
     model     = AutoModelForSequenceClassification.from_pretrained(
                     HF_REPO,
                     ignore_mismatched_sizes=True
                 )
 
-    le_path = hf_hub_download(repo_id=HF_REPO, filename="label_encoder.pkl")
+    le_path = hf_hub_download(repo_id=HF_REPO, filename="label_encoder.pkl", token=hf_token)
     le      = joblib.load(le_path)
 
     model.eval()
