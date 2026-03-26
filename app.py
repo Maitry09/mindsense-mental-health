@@ -3,7 +3,6 @@
 import streamlit as st
 import torch
 import numpy as np
-import os
 from huggingface_hub import hf_hub_download
 import joblib
 import matplotlib.pyplot as plt
@@ -35,17 +34,16 @@ st.markdown("""
 # ── Load model once ───────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    MODEL_PATH = "maitry30/mindsense-bert"   #HuggingFace repo
+    HF_REPO = "maitry30/mindsense-bert"  # HuggingFace repo with model and tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(HF_REPO)
+    model     = AutoModelForSequenceClassification.from_pretrained(
+                    HF_REPO,
+                    ignore_mismatched_sizes=True
+                )
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-    model     = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
+    le_path = hf_hub_download(repo_id=HF_REPO, filename="label_encoder.pkl")
+    le      = joblib.load(le_path)
 
-    # Download label encoder separately
-    le_path = hf_hub_download(
-        repo_id=MODEL_PATH,
-        filename="label_encoder.pkl"
-    )
-    le = joblib.load(le_path)
     model.eval()
     return tokenizer, model, le
 
