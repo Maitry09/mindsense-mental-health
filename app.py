@@ -34,7 +34,7 @@ st.markdown("""
 # ── Load model once ───────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    HF_REPO = "maitry30/mindsense-bert"  # HuggingFace repo with model and tokenizer
+    HF_REPO = "Maitry09/mindsense-bert"  # HuggingFace repo with model and tokenizer
     hf_token = st.secrets.get("HF_TOKEN", None)
     tokenizer = AutoTokenizer.from_pretrained(HF_REPO)
     model     = AutoModelForSequenceClassification.from_pretrained(
