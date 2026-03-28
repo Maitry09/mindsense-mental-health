@@ -29,33 +29,33 @@ st.markdown("""
     }
     .stTextArea textarea { border-radius: 10px; }
 
-    /* Hide everything Streamlit branded */
     footer { visibility: hidden !important; }
     footer * { visibility: hidden !important; }
     header { visibility: hidden !important; }
     header * { visibility: hidden !important; }
     #MainMenu { visibility: hidden !important; }
-    #MainMenu * { visibility: hidden !important; }
     .stDeployButton { display: none !important; }
-
-    /* Hide GitHub username and Streamlit badge bottom right */
     [data-testid="stToolbar"] { display: none !important; }
     [data-testid="stDecoration"] { display: none !important; }
     [data-testid="stStatusWidget"] { display: none !important; }
-    ._profileContainer_gzau3_53 { display: none !important; }
-    ._link_gzau3_10 { display: none !important; }
-    ._profilePreview_gzau3_63 { display: none !important; }
-
-    /* Hide bottom bar completely */
-    .reportview-container .main footer { display: none !important; }
-    section[data-testid="stSidebar"] div[class*="profileContainer"] {
-        display: none !important;
-    }
-    div[class*="ProfileContainer"] { display: none !important; }
-    div[class*="viewerBadge"] { display: none !important; }
-    div[class*="streamlitBadge"] { display: none !important; }
     a[href*="streamlit.io"] { display: none !important; }
     a[href*="github.com"] { display: none !important; }
+
+    /* These hide the bottom right icons specifically */
+    .st-emotion-cache-1dp5vir { display: none !important; }
+    .st-emotion-cache-h4xjcd { display: none !important; }
+    .st-emotion-cache-1wbqy5l { display: none !important; }
+    iframe[title="streamlit_analytics"] { display: none !important; }
+
+    /* Nuclear option — hide entire bottom right corner */
+    div[class*="badge"] { display: none !important; }
+    div[class*="Badge"] { display: none !important; }
+    div[class*="profile"] { display: none !important; }
+    div[class*="Profile"] { display: none !important; }
+    div[class*="viewer"] { display: none !important; }
+    div[class*="Viewer"] { display: none !important; }
+    button[kind="icon"] { display: none !important; }
+    [data-testid="stActionButtonIcon"] { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
