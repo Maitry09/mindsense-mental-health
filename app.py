@@ -38,24 +38,19 @@ st.markdown("""
     [data-testid="stToolbar"] { display: none !important; }
     [data-testid="stDecoration"] { display: none !important; }
     [data-testid="stStatusWidget"] { display: none !important; }
-    a[href*="streamlit.io"] { display: none !important; }
-    a[href*="github.com"] { display: none !important; }
 
-    /* These hide the bottom right icons specifically */
-    .st-emotion-cache-1dp5vir { display: none !important; }
-    .st-emotion-cache-h4xjcd { display: none !important; }
-    .st-emotion-cache-1wbqy5l { display: none !important; }
-    iframe[title="streamlit_analytics"] { display: none !important; }
+    /* Exact class names from inspect */
+    ._container_gzau3_1 { display: none !important; }
+    ._viewerBadge_nim44_23 { display: none !important; }
+    ._link_gzau3_10 { display: none !important; }
+    ._profileContainer_gzau3_53 { display: none !important; }
+    ._profilePreview_gzau3_63 { display: none !important; }
+    ._profileImage_gzau3_78 { display: none !important; }
+    ._darkThemeShadow_gzau3_91 { display: none !important; }
 
-    /* Nuclear option — hide entire bottom right corner */
-    div[class*="badge"] { display: none !important; }
-    div[class*="Badge"] { display: none !important; }
-    div[class*="profile"] { display: none !important; }
-    div[class*="Profile"] { display: none !important; }
-    div[class*="viewer"] { display: none !important; }
-    div[class*="Viewer"] { display: none !important; }
-    button[kind="icon"] { display: none !important; }
-    [data-testid="stActionButtonIcon"] { display: none !important; }
+    /* Hide by href */
+    a[href="https://streamlit.io/cloud"] { display: none !important; }
+    a[href*="share.streamlit.io/user"] { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
