@@ -16,19 +16,6 @@ st.set_page_config(
     layout="centered"
 )
 
-#── Custom loading spinner CSS ───────────────────────────────
-
-st.markdown("""
-<style>
-    .loading-msg {
-        text-align: center;
-        padding: 20px;
-        color: #666;
-        font-size: 14px;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # ── Custom CSS ────────────────────────────────────────────────
 st.markdown("""
 <style>
@@ -96,30 +83,7 @@ def load_model():
     model.eval()
     return tokenizer, model, le
 
-# ── Loading screen ────────────────────────────────────────────
-if "model_loaded" not in st.session_state:
-    st.session_state.model_loaded = False
-
-if not st.session_state.model_loaded:
-    st.markdown("""
-    <div style='text-align:center; padding:60px 20px'>
-        <h2 style='color:#4CAF50'>🧠 MindSense</h2>
-        <p style='font-size:16px; color:#555'>
-            Loading AI model for the first time...
-        </p>
-        <p style='font-size:13px; color:#888'>
-            This takes 1-2 minutes on first load.
-            Please do not refresh the page.
-        </p>
-        <p style='font-size:13px; color:#888'>
-            ⏳ Downloading model from HuggingFace...
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with st.spinner("🔄 Loading AI model — please wait 1-2 minutes..."):
-    tokenizer, model, le = load_model()
-    st.session_state.model_loaded = True
+tokenizer, model, le = load_model()
 
 device = torch.device('cpu')
 model  = model.to(device)
