@@ -42,44 +42,49 @@ st.markdown("""
     }
     .stTextArea textarea { border-radius: 10px; }
 
-    /* Hide Streamlit footer and branding */
-    footer { visibility: hidden; }
-    footer:after {
-        content: 'MindSense — Mental Health Detection';
-        visibility: visible;
-        display: block;
-        color: gray;
-        font-size: 12px;
-        text-align: center;
-        padding: 5px;
-    }
+    /* Hide everything Streamlit branded */
+    footer { visibility: hidden !important; }
+    footer * { visibility: hidden !important; }
+    header { visibility: hidden !important; }
+    header * { visibility: hidden !important; }
+    #MainMenu { visibility: hidden !important; }
+    #MainMenu * { visibility: hidden !important; }
+    .stDeployButton { display: none !important; }
 
-    /* Hide Made by maitry09 */
-    #MainMenu { visibility: hidden; }
-    header { visibility: hidden; }
-
-    /* Hide top right deploy button */
-    .stDeployButton { display: none; }
-
-    /* Hide bottom right streamlit badge */
+    /* Hide GitHub username and Streamlit badge bottom right */
+    [data-testid="stToolbar"] { display: none !important; }
+    [data-testid="stDecoration"] { display: none !important; }
+    [data-testid="stStatusWidget"] { display: none !important; }
     ._profileContainer_gzau3_53 { display: none !important; }
     ._link_gzau3_10 { display: none !important; }
+    ._profilePreview_gzau3_63 { display: none !important; }
+
+    /* Hide bottom bar completely */
+    .reportview-container .main footer { display: none !important; }
+    section[data-testid="stSidebar"] div[class*="profileContainer"] {
+        display: none !important;
+    }
+    div[class*="ProfileContainer"] { display: none !important; }
+    div[class*="viewerBadge"] { display: none !important; }
+    div[class*="streamlitBadge"] { display: none !important; }
+    a[href*="streamlit.io"] { display: none !important; }
+    a[href*="github.com"] { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
 # ── Load model once ───────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    HF_REPO   = "maitry30/mindsense-bert"
-    hf_token  = st.secrets.get("HF_TOKEN", None)
+    HF_REPO  = "maitry30/mindsense-bert"
+    hf_token = st.secrets.get("HF_TOKEN", None)
 
     tokenizer = AutoTokenizer.from_pretrained(
         HF_REPO,
-        token=hf_token       
+        token=hf_token
     )
     model = AutoModelForSequenceClassification.from_pretrained(
         HF_REPO,
-        token=hf_token,       
+        token=hf_token,
         ignore_mismatched_sizes=True
     )
     le_path = hf_hub_download(
@@ -91,8 +96,30 @@ def load_model():
     model.eval()
     return tokenizer, model, le
 
-with st.spinner("Loading model..."):
+# ── Loading screen ────────────────────────────────────────────
+if "model_loaded" not in st.session_state:
+    st.session_state.model_loaded = False
+
+if not st.session_state.model_loaded:
+    st.markdown("""
+    <div style='text-align:center; padding:60px 20px'>
+        <h2 style='color:#4CAF50'>🧠 MindSense</h2>
+        <p style='font-size:16px; color:#555'>
+            Loading AI model for the first time...
+        </p>
+        <p style='font-size:13px; color:#888'>
+            This takes 1-2 minutes on first load.
+            Please do not refresh the page.
+        </p>
+        <p style='font-size:13px; color:#888'>
+            ⏳ Downloading model from HuggingFace...
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with st.spinner("🔄 Loading AI model — please wait 1-2 minutes..."):
     tokenizer, model, le = load_model()
+    st.session_state.model_loaded = True
 
 device = torch.device('cpu')
 model  = model.to(device)
