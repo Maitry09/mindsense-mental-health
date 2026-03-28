@@ -1,9 +1,11 @@
 streamlit
-transformers
 torch
+numpy
 matplotlib
 joblib
-numpy
+scikit-learn
+huggingface-hub
+transformers
+safetensors
+tokenizers
 shap
-protobuf==3.20.3
-huggingface_hub
