@@ -16,6 +16,19 @@ st.set_page_config(
     layout="centered"
 )
 
+#── Custom loading spinner CSS ───────────────────────────────
+
+st.markdown("""
+<style>
+    .loading-msg {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 14px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # ── Custom CSS ────────────────────────────────────────────────
 st.markdown("""
 <style>
@@ -28,6 +41,29 @@ st.markdown("""
         padding: 10px;
     }
     .stTextArea textarea { border-radius: 10px; }
+
+    /* Hide Streamlit footer and branding */
+    footer { visibility: hidden; }
+    footer:after {
+        content: 'MindSense — Mental Health Detection';
+        visibility: visible;
+        display: block;
+        color: gray;
+        font-size: 12px;
+        text-align: center;
+        padding: 5px;
+    }
+
+    /* Hide Made by maitry09 */
+    #MainMenu { visibility: hidden; }
+    header { visibility: hidden; }
+
+    /* Hide top right deploy button */
+    .stDeployButton { display: none; }
+
+    /* Hide bottom right streamlit badge */
+    ._profileContainer_gzau3_53 { display: none !important; }
+    ._link_gzau3_10 { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
