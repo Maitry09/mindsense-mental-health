@@ -16,7 +16,7 @@ env/
 .env
 
 # ── Model Files (IMPORTANT) ─────────────
-mentalbert_model
+mentalbert_model/
 
 # ── Data Files (optional) ───────────────
 *.csv
