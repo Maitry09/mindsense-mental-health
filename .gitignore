@@ -1,0 +1,43 @@
+# ── Python ───────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Virtual Environment ─────────────────
+venv/
+env/
+.venv/
+
+# ── Jupyter Notebook ────────────────────
+.ipynb_checkpoints/
+
+# ── Environment Variables ───────────────
+.env
+
+# ── Model Files (IMPORTANT) ─────────────
+mentalbert_model
+
+# ── Data Files (optional) ───────────────
+*.csv
+*.xlsx
+
+# ── Logs ───────────────────────────────
+*.log
+
+# ── OS Files ───────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Streamlit Cache ────────────────────
+.streamlit/
+
+# ── IDE / Editor ───────────────────────
+.vscode/
+.idea/
+
+# ── Matplotlib cache ───────────────────
+.matplotlib/
+
+
+tfidf_vectorizer.pkl
